@@ -1,0 +1,6 @@
+@APIMonitizationGateway_HostAddress = http://localhost:5260
+
+GET {{APIMonitizationGateway_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
