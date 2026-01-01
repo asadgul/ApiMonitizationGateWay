@@ -1,0 +1,31 @@
+version: "3.9"
+
+services:
+  sqlserver:
+    image: mcr.microsoft.com/mssql/server:2022-latest
+    container_name: api-sql
+    environment:
+      SA_PASSWORD: "docker@123"
+      ACCEPT_EULA: "Y"
+    ports:
+      - "1433:1433"
+    volumes:
+      - sql_data:/var/opt/mssql
+
+  api:
+    image: apimonitizationgateway:dev
+    container_name: api-gateway
+    depends_on:
+      - sqlserver
+    ports:
+      - "5000:80"
+    environment:
+      ConnectionStrings__ApplicationDbConnection: >
+        Server=sqlserver;
+        Database=ApiMonizationDb;
+        User Id=sa;
+        Password=docker@123;
+        TrustServerCertificate=True
+
+volumes:
+  sql_data:
