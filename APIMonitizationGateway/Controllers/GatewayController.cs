@@ -7,7 +7,7 @@ namespace APIMonitizationGateway.Controllers
     [ApiController]
     public class GatewayController : ControllerBase
     {
-        [HttpGet("RequestSend")]
+        [HttpGet("SendApiRequest")]
         public IActionResult RequestSend()
         {
             return Ok("Request allowed");
